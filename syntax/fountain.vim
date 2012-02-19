@@ -3,45 +3,45 @@
 " File: .fountain, .spmd, .txt
 " Reference: http://fountain.io/
 " Maintainer:	Carson Fire <carsonfire@gmail.com>
-" Last Change:	February 9, 2012
-" Version: 2.0	
+" Last Change:	February 19, 2012
+" Version: 2.01	
 
 if exists("b:current_syntax")
   finish
 endif
 syn sync minlines=200
 
-syn region fountainTitlePage start="\%^\(.*\):" end="^$"
-syn match fountainCharacter "^\(\d\|\u\|\s\|\W\)*$" contains=fountainDualDialogue 
-syn region fountainDialogue matchgroup=fountainCharacter start="^\(\d\|\u\|\s\|\W\)*$" end="^\s*$" contains=fountainCharacter,fountainParenthetical,fountainBoneyard
-syn match fountainParenthetical "^\s*\((.*)\)$" contained
-syn match fountainDualDialogue "\^$" contained
-syn match fountainTransition "^\(\d\|\u\|\s\|\W\)* TO:$"
-syn match fountainTransitionForced "^\s*>\(.*\)"
-syn match fountainCentered "^\s*>\(.*\)<"
+syn match fountainSection1 "^\s*# \(\_[^#]\)" fold transparent contains=ALL
+syn region fountainTitlePage start="\%^\(.*\):" end="^$" contains=fountainBoneyard
+syn match fountainCharacter "^\(\L\)*$" 
+syn region fountainDialogue matchgroup=fountainCharacter start="^\(\L\)*$" end="^\s*$" contains=fountainCharacter,fountainParenthetical,fountainBoneyard,fountainEmphasis
+syn match fountainParenthetical "^\s*\((.*)\)$" contained contains=fountainBoneyard
+syn match fountainTransition "^\(\L\)* TO:$" contains=fountainBoneyard
+syn match fountainTransitionForced "^\s*>\(.*\)" contains=fountainBoneyard
+syn match fountainCentered "^\s*>\(.*\)<" contains=fountainBoneyard
 syn match fountainUnderlined "_[^_]*_" 
-syn match fountainItalic "\*[^\*]*\*" 
+syn match fountainItalic "\*[^\*]*\*"
 syn match fountainBold "\*\*[^\*]*\*\*"
 syn match fountainBoldItalic "\*\*\*[^\*]*\*\*\*" 
 syn match fountainPagebreak "^===[=]*$"
-"syn region fountainActionForced start="^\(\d\|\u\|\s\|\W\)*" end="[ ]$"
-syn region fountainNotes start="\[\[" end="\]\]"
-syn region fountainSection1 start="^\s*# " end="$"
-syn region fountainSection2 start="^\s*## " end="$"
-syn region fountainSection3 start="^\s*### " end="$"
-syn region fountainSection4 start="^\s*#### " end="$"
-syn region fountainSection5 start="^\s*##### " end="$"
-syn region fountainSection6 start="^\s*###### " end="$"
-syn region fountainSynopses start="^\s*= " end="$"
-syn region fountainSceneHeading start="^\s*\(\.\|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \|INT \|EXT \|INT/EXT \|I/E \|int\. \|ext\. \|int\./ext\. \|int/ext\. \|int \|ext \|int/ext \|i/e \)" end="$" 
-syn match fountainBoneyard "/\*\(\_[^\*]\)*\*/" 
+syn region fountainNotes start="\[\[" end="\]\]" contains=fountainBoneyard
+syn region fountainHeader1 start="^\s*# " end="$" contains=fountainBoneyard
+syn region fountainHeader2 start="^\s*## " end="$" contains=fountainBoneyard
+syn region fountainHeader3 start="^\s*### " end="$" contains=fountainBoneyard
+syn region fountainHeader4 start="^\s*#### " end="$" contains=fountainBoneyard
+syn region fountainHeader5 start="^\s*##### " end="$" contains=fountainBoneyard
+syn region fountainHeader6 start="^\s*###### " end="$" contains=fountainBoneyard
+syn region fountainSynopses start="^\s*= " end="$" contains=fountainBoneyard
+syn region fountainSceneHeading start="^\s*\(\.\|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \|INT \|EXT \|INT/EXT \|I/E \|int\. \|ext\. \|int\./ext\. \|int/ext\. \|int \|ext \|int/ext \|i/e \)" end="$" contains=fountainSceneNumber,fountainBoneyard 
+syn region fountainBoneyard start="/\*" end="\*\/" contains=xLineContinue
+syn match xLineContinue "\\$" contained
+syn region fountainSceneNumber start="#" end="#" contained
 
 hi def link fountainTitlePage		    title
 hi def link fountainSceneHeading	    title
 hi def link fountainCharacter			identifier 
 hi def link fountainDialogue			statement
 hi def link fountainParenthetical		function
-hi def link fountainDualDialogue		conditional
 hi def link fountainTransition			todo
 hi def link fountainTransitionForced	todo
 hi def link fountainCentered			character
@@ -53,12 +53,13 @@ hi def link fountainPagebreak			conditional
 hi def link fountainActionForced		normal
 hi def link fountainNotes				comment
 hi def link fountainBoneyard			nontext	
-hi def link fountainSection1			htmlH1	
-hi def link fountainSection2			htmlH2	
-hi def link fountainSection3			htmlH3	
-hi def link fountainSection4			htmlH4	
-hi def link fountainSection5			htmlH5	
-hi def link fountainSection6			htmlH6	
+hi def link fountainHeader1				htmlH1	
+hi def link fountainHeader2				htmlH2	
+hi def link fountainHeader3				htmlH3	
+hi def link fountainHeader4				htmlH4	
+hi def link fountainHeader5				htmlH5	
+hi def link fountainHeader6				htmlH6	
 hi def link fountainSynopses			number
+hi def link fountainSceneNumber			number	
 
 let b:current_syntax = "fountain"
