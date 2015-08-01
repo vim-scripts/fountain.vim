@@ -33,7 +33,7 @@ syn region fountainHeader4 start="^\s*#### " end="$" contains=fountainBoneyard,f
 syn region fountainHeader5 start="^\s*##### " end="$" contains=fountainBoneyard,fountainNotes
 syn region fountainHeader6 start="^\s*###### " end="$" contains=fountainBoneyard,fountainNotes
 syn region fountainSynopses start="^\s*= " end="$" contains=fountainBoneyard,fountainNotes
-syn region fountainSceneHeading start="^\s*\(\.\|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \|INT \|EXT \|INT/EXT \|I/E \|int\. \|ext\. \|int\./ext\. \|int/ext\. \|int \|ext \|int/ext \|i/e \)" end="$" contains=fountainSceneNumber,fountainBoneyard,fountainNotes 
+syn region fountainSceneHeading start="^\s*\(\.[^\. ]\|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \|INT \|EXT \|INT/EXT \|I/E \|int\. \|ext\. \|int\./ext\. \|int/ext\. \|int \|ext \|int/ext \|i/e \)" end="$" contains=fountainSceneNumber,fountainBoneyard,fountainNotes 
 syn region fountainBoneyard start="/\*" end="\*\/" contains=xLineContinue
 syn match xLineContinue "\\$" contained
 syn region fountainSceneNumber start="#" end="#" contained
