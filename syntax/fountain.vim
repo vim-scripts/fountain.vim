@@ -13,9 +13,10 @@ syn sync minlines=200
 
 syn match fountainSection1 "^\s*# \(\_[^#]\)" fold transparent contains=ALL
 syn region fountainTitlePage start="\%^\(.*\):" end="^$" contains=fountainBoneyard,fountainNotes
-syn match fountainCharacter "^\(\L\)*$" 
-syn region fountainDialogue matchgroup=fountainCharacter start="^\(\L\)*$" end="^\s*$" contains=fountainCharacter,fountainParenthetical,fountainBoneyard,fountainNotes,fountainEmphasis
+syn match fountainCharacter "\(^\s*@\(.*\)\)\|\(^\(\L\)*$\)" 
+syn region fountainDialogue matchgroup=fountainCharacter start="\(^\s*@\(.*\)\)\|\(^\(\L\)*$\)" end="^\s*$" contains=fountainCharacter,fountainParenthetical,fountainBoneyard,fountainNotes,fountainBold,fountainUnderlined,fountainItalic,fountainBoldItalic
 syn match fountainParenthetical "^\s*\((.*)\)$" contained contains=fountainBoneyard,fountainNotes
+syn match fountainLyric "^\s*\~\(.*\)$" contained contains=fountainBoneyard,fountainNotes
 syn match fountainTransition "^\(\L\)* TO:$" contains=fountainBoneyard,fountainNotes
 syn match fountainTransitionForced "^\s*>\(.*\)" contains=fountainBoneyard,fountainNotes
 syn match fountainCentered "^\s*>\(.*\)<" contains=fountainBoneyard,fountainNotes
@@ -32,33 +33,35 @@ syn region fountainHeader4 start="^\s*#### " end="$" contains=fountainBoneyard,f
 syn region fountainHeader5 start="^\s*##### " end="$" contains=fountainBoneyard,fountainNotes
 syn region fountainHeader6 start="^\s*###### " end="$" contains=fountainBoneyard,fountainNotes
 syn region fountainSynopses start="^\s*= " end="$" contains=fountainBoneyard,fountainNotes
-syn region fountainSceneHeading start="^\s*\(\.\|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \|INT \|EXT \|INT/EXT \|I/E \|int\. \|ext\. \|int\./ext\. \|int/ext\. \|int \|ext \|int/ext \|i/e \)" end="$" contains=fountainSceneNumber,fountainBoneyard,fountainNotes 
+syn region fountainSceneHeading start="^\s*\(\.[^\. ]\|INT\. \|EXT\. \|INT\./EXT\. \|INT/EXT\. \|INT \|EXT \|INT/EXT \|I/E \|int\. \|ext\. \|int\./ext\. \|int/ext\. \|int \|ext \|int/ext \|i/e \)" end="$" contains=fountainSceneNumber,fountainBoneyard,fountainNotes 
 syn region fountainBoneyard start="/\*" end="\*\/" contains=xLineContinue
 syn match xLineContinue "\\$" contained
 syn region fountainSceneNumber start="#" end="#" contained
 
 hi def link fountainTitlePage		    title
+hi def link fountainSection1 				Underlined
 hi def link fountainSceneHeading	    title
 hi def link fountainCharacter			identifier 
 hi def link fountainDialogue			statement
-hi def link fountainParenthetical		function
+hi def link fountainParenthetical		vimIsCommand
 hi def link fountainTransition			todo
+hi def link fountainLyric						normal
 hi def link fountainTransitionForced	todo
 hi def link fountainCentered			character
 hi fountainUnderlined					gui=underline
 hi fountainItalic						gui=italic cterm=italic	
-hi fountainBold							gui=bold cterm=bold	
+hi fountainBold							gui=bold cterm=bold
 hi fountainBoldItalic					gui=bold,italic cterm=bold,italic	
 hi def link fountainPagebreak			conditional
 hi def link fountainActionForced		normal
 hi def link fountainNotes				comment
 hi def link fountainBoneyard			nontext	
-hi def link fountainHeader1				htmlH1	
-hi def link fountainHeader2				htmlH2	
-hi def link fountainHeader3				htmlH3	
-hi def link fountainHeader4				htmlH4	
-hi def link fountainHeader5				htmlH5	
-hi def link fountainHeader6				htmlH6	
+hi def link fountainHeader1				CursorLineNr	
+hi def link fountainHeader2				CursorLineNr	
+hi def link fountainHeader3				CursorLineNr	
+hi def link fountainHeader4				CursorLineNr	
+hi def link fountainHeader5				CursorLineNr	
+hi def link fountainHeader6				CursorLineNr	
 hi def link fountainSynopses			number
 hi def link fountainSceneNumber			number	
 
