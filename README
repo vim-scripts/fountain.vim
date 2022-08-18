@@ -1,3 +1,9 @@
+This is a mirror of https://github.com/vim-scripts/fountain.vim, which is
+unmaintained. This fork has merged the two PRs on that repository and will
+accept additional PRs. 
+
+---
+
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=3880
 
 Fountain is a plain text markup language for screenwriting.
